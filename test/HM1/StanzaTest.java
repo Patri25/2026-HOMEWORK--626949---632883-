@@ -24,7 +24,6 @@ class StanzaTest {
 	void testImpostaStanzaAdiacente() {
 		//Verifica che venga correttamente impostata la staza adiacente
 		this.stanza.impostaStanzaAdiacente("Sopra", stanzaAdiacente);
-		
 		//Confronto che queste corrispondano
 		assertEquals(stanzaAdiacente, this.stanza.getStanzaAdiacente("Sopra"));
 
@@ -78,7 +77,6 @@ class StanzaTest {
 	void testAddAttrezzo() {//Verifico che venga effettivamente aggiunto un attrezzo con lo stesso nome
 		this.stanza.addAttrezzo(attrezzo);
 		assertTrue(this.stanza.hasAttrezzo("Falce"));
-		
 	}
 	
 	@Test
@@ -142,10 +140,25 @@ class StanzaTest {
 	}
 	
 	//----------------GETATTREZZO,I 3 TEST---------------------
-	//Da fare, faccio io
+	
+	@Test
+	public void testgetAttrezzoPresente() {//Verifico che trovi e ritorni un attrezzo presente nella stanza
+		assertEquals(this.attrezzo, this.stanza.getAttrezzo("Falce"));
+	}
+	
+	@Test
+	public void testgetAttrezzoNonPresente() {//Verifico NON che trovi e ritorni un attrezzo NON presente nella stanza
+		assertNull(this.stanza.getAttrezzo("Filtro"));
+	}
+	
+	@Test
+	public void testgetAttrezzoInseritoSuccessivamente() {//Verifico  che trovi e ritorni un attrezzo inserito successivamente nella stanza
+		Attrezzo NuovoAttrezzo=new Attrezzo("Pistola",6);
+		this.stanza.addAttrezzo(NuovoAttrezzo);
+		assertEquals(NuovoAttrezzo,this.stanza.getAttrezzo("Pistola"));
+	}
 	
 	//----------------REMOVEATTREZZO,I 3 TEST---------------------
-	//Da fare
 
 
 }
