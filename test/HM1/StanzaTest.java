@@ -159,6 +159,24 @@ class StanzaTest {
 	}
 	
 	//----------------REMOVEATTREZZO,I 3 TEST---------------------
-
+	
+	@Test
+	public void removeAttrezzoPresente() {//Verifico che rimuova l'attrezzo
+		this.stanza.removeAttrezzo("Falce");//L'errore è normale finchè non è implementata( E' uno dei prossimi punti dell'hw)
+		assertFalse(this.stanza.hasAttrezzo("Falce"));
+	}
+	
+	@Test
+	public void removeAttrezzoNonPresente() {//Mi aspetto che torni FALSE (non ho rimosso l'attrezzo che mi hai passato perchè non ci stava)
+		assertFalse(this.stanza.removeAttrezzo("Spellacavi"));
+	}
+	
+	@Test
+	public void removeAttrezzoSoloIlPrimoConStessoNome() {
+		Attrezzo a2= new Attrezzo("Falce", 6);
+		this.stanza.addAttrezzo(a2);
+		this.stanza.removeAttrezzo("Falce");
+		assertTrue(this.stanza.hasAttrezzo("Falce"));
+	}
 
 }
