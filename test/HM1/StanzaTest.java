@@ -142,7 +142,7 @@ class StanzaTest {
 	}
 	
 	//----------------GETATTREZZO,I 3 TEST---------------------
-	//Da fare
+	//Da fare, faccio io
 	
 	//----------------REMOVEATTREZZO,I 3 TEST---------------------
 	//Da fare
