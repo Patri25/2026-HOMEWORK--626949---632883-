@@ -102,7 +102,7 @@ public class DiaDia {
 		else {
 			this.partita.setStanzaCorrente(prossimaStanza);
 			int cfu = this.partita.getCfu();
-			this.partita.setCfu(cfu--);
+			this.partita.setCfu(cfu-1);
 		}
 		System.out.println(partita.getStanzaCorrente().getDescrizione());
 	}
