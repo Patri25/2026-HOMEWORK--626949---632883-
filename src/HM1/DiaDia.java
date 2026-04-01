@@ -53,7 +53,13 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
+		
+		
 		Comando comandoDaEseguire = new Comando(istruzione);
+		
+		if (comandoDaEseguire.sconosciuto()) { //Se comando vuoto o non riconosciuto da la possibilità di scriverne in altro senza crashare
+	        return false; 
+	    }
 
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine(); 
