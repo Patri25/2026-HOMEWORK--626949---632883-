@@ -90,16 +90,6 @@ class StanzaTest {
 		assertTrue(this.stanza.hasAttrezzo("Falce") && this.stanza.hasAttrezzo("Pinsette"));
 	}
 	
-	//funzione per generare 10 oggetti
-	
-	void genera10ogg() {
-		
-		arrayOggetti[] a = new 
-		for(int i=0; i<10;i++) {
-			Attrezzo a+1 = new 
-		}
-	}
-	
 	@Test
 	void testAddAttrezzoMassimoAttrezzi() {//il massimo è di 10 attrezzi.
 
