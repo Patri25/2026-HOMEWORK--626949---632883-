@@ -104,7 +104,7 @@ class StanzaTest {
 	void testAddAttrezzoMassimoAttrezzi() {//il massimo è di 10 attrezzi.
 
 		for (int i = 1; i <= 10; i++) {
-	        Attrezzo a = new Attrezzo("a" + i, 1); // Nome dinamico: Attrezzo1, Attrezzo2...
+	        Attrezzo a = new Attrezzo("a" + i, 1); // Nome dinamico: a1,a2,...
 	        this.stanza.addAttrezzo(a);
 	    }
 		
