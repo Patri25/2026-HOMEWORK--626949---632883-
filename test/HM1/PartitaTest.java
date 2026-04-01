@@ -42,4 +42,9 @@ class PartitaTest {
 	
 	//---------------------ISFINITA, I 3 TEST------------------------
 	//Controlla se la stanza è giusta, il numero di cfu e se toran true la funziona "vinta()".
+	@Test
+	void testVintaCfuFiniti() {
+		this.partita.setCfu(0);
+		
+		}
 }
