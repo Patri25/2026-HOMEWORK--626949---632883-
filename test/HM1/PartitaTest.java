@@ -24,7 +24,7 @@ class PartitaTest {
 
 	@Test
 	void testVintaCorrispondenteAllaVittoria() {
-		this.partita.setStanzaCorrente(stanzaVincente);
+		this.partita.setStanzaCorrente(this.stanzaVincente);
 		assertTrue(this.partita.vinta());
 	}
 	
@@ -43,8 +43,21 @@ class PartitaTest {
 	//---------------------ISFINITA, I 3 TEST------------------------
 	//Controlla se la stanza è giusta, il numero di cfu e se toran true la funziona "vinta()".
 	@Test
-	void testVintaCfuFiniti() {
+	void testIsFinitaCfuFiniti() {
 		this.partita.setCfu(0);
+		assertTrue(this.partita.isFinita());
 		
 		}
+	
+	@Test
+	void testIsFinitaMetodoVinta() {
+		this.partita.setStanzaCorrente(this.stanzaVincente);
+		assertTrue(this.partita.isFinita());
+	}
+	
+	@Test
+	void testIsFinitaManuale() {
+		this.partita.setFinita();
+	    assertTrue(this.partita.isFinita());
+	}
 }
