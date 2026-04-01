@@ -41,5 +41,5 @@ class PartitaTest {
 	}
 	
 	//---------------------ISFINITA, I 3 TEST------------------------
-
+	//Controlla se la stanza è giusta, il numero di cfu e se toran true la funziona "vinta()".
 }
