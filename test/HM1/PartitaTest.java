@@ -9,13 +9,14 @@ class PartitaTest {
 	
 	private Partita partita;
 	private Stanza stanzaVincente;
+	private Labirinto labirinto;
 	private Stanza stanzaCorrente;
 	
 	
 	@BeforeEach
 	public void setUp() {
 		partita = new Partita();
-		stanzaVincente=this.partita.getStanzaVincente();
+		stanzaVincente=this.labirinto.getStanzaVincente();
 		stanzaCorrente=this.partita.getStanzaCorrente();
 	}
 	
