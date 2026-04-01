@@ -23,7 +23,7 @@ class StanzaTest {
 	@Test
 	void testImpostaStanzaAdiacente() {
 		//Verifica che venga correttamente impostata la staza adiacente
-		this.stanza.impostaStanzaAdiacente("Sopra", stanzaAdiacente);
+		this.stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		//Confronto che queste corrispondano
 		assertEquals(stanzaAdiacente, this.stanza.getStanzaAdiacente("Sopra"));
 
@@ -34,20 +34,20 @@ class StanzaTest {
 		//Verifico che una volta superato il numero massimo di stanze vicine non venga inserita quella in eccesso
 		
 		//1
-		this.stanza.impostaStanzaAdiacente("Sopra", stanzaAdiacente);
+		this.stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		
 		
 		//2
 		Stanza stanzaSotto=new Stanza("n13");
-		this.stanza.impostaStanzaAdiacente("Sotto", stanzaSotto);
+		this.stanza.impostaStanzaAdiacente("sud", stanzaSotto);
 		
 		//3
 		Stanza stanzaDestra=new Stanza("n14");
-		this.stanza.impostaStanzaAdiacente("Destra", stanzaDestra);
+		this.stanza.impostaStanzaAdiacente("est", stanzaDestra);
 		
 		//4
 		Stanza stanzaSinistra=new Stanza("n15");
-		this.stanza.impostaStanzaAdiacente("Sinistra", stanzaSinistra);
+		this.stanza.impostaStanzaAdiacente("ovest", stanzaSinistra);
 		
 		//5!!
 		Stanza stanzaExtra=new Stanza("n16");
@@ -60,15 +60,15 @@ class StanzaTest {
 	
 	@Test
 	void testImpostaStanzaAdiacenteCambioDiStanza() {
-		this.stanza.impostaStanzaAdiacente("Sopra", stanzaAdiacente);
+		this.stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		
 		Stanza stanzaSostitutiva =new Stanza("n17");
 		
 		//Sostituzione
-		this.stanza.impostaStanzaAdiacente("Sopra", stanzaSostitutiva);
+		this.stanza.impostaStanzaAdiacente("nord", stanzaSostitutiva);
 		
 		//Verifica sostituzione
-		assertEquals(stanzaSostitutiva, this.stanza.getStanzaAdiacente("Sopra"));
+		assertEquals(stanzaSostitutiva, this.stanza.getStanzaAdiacente("nord"));
 	}
 	
 	//----------------ADDATTREZZO,I 3 TEST---------------------
@@ -90,46 +90,23 @@ class StanzaTest {
 		assertTrue(this.stanza.hasAttrezzo("Falce") && this.stanza.hasAttrezzo("Pinsette"));
 	}
 	
+	//funzione per generare 10 oggetti
+	
+	void genera10ogg() {
+		
+		arrayOggetti[] a = new 
+		for(int i=0; i<10;i++) {
+			Attrezzo a+1 = new 
+		}
+	}
+	
 	@Test
 	void testAddAttrezzoMassimoAttrezzi() {//il massimo è di 10 attrezzi.
-		//1
-		this.stanza.addAttrezzo(attrezzo);
-		
-		//2
-		Attrezzo a2= new Attrezzo("Osso", 1);
-		this.stanza.addAttrezzo(a2);
-		
-		//3
-		Attrezzo a3= new Attrezzo("Spada", 6);
-		this.stanza.addAttrezzo(a3);
-		
-		//4
-		Attrezzo a4= new Attrezzo("Scudo", 8);
-		this.stanza.addAttrezzo(a4);
-		
-		//5
-		Attrezzo a5= new Attrezzo("Torcia", 3);
-		this.stanza.addAttrezzo(a5);
-		
-		//6
-		Attrezzo a6= new Attrezzo("shuriken", 4);
-		this.stanza.addAttrezzo(a6);
-		
-		//7
-		Attrezzo a7=new Attrezzo("Pala",5);
-		this.stanza.addAttrezzo(a7);
-		
-		//8
-		Attrezzo a8=new Attrezzo("Accendino",1);
-		this.stanza.addAttrezzo(a8);
-		
-		//9
-		Attrezzo a9=new Attrezzo("Bastone",4);
-		this.stanza.addAttrezzo(a9);
-		
-		//10
-		Attrezzo a10=new Attrezzo("Piccone",6);
-		this.stanza.addAttrezzo(a10);
+
+		for (int i = 1; i <= 10; i++) {
+	        Attrezzo a = new Attrezzo("a" + i, 1); // Nome dinamico: Attrezzo1, Attrezzo2...
+	        this.stanza.addAttrezzo(a);
+	    }
 		
 		//11!!
 		Attrezzo a11=new Attrezzo("Livella",3);
