@@ -9,7 +9,7 @@ class PartitaTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented daje roma");
+		fail("Not yet implemented daje roma gfhgfhg");
 	}
 
 }
