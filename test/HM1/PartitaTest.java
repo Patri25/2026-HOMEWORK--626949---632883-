@@ -11,13 +11,16 @@ class PartitaTest {
 	private Stanza stanzaVincente;
 	private Labirinto labirinto;
 	private Stanza stanzaCorrente;
+	private Giocatore giocatore;
 	
 	
 	@BeforeEach
 	public void setUp() {
 		partita = new Partita();
+		labirinto = new Labirinto();
+		giocatore=new Giocatore();
 		stanzaVincente=this.labirinto.getStanzaVincente();
-		stanzaCorrente=this.partita.getStanzaCorrente();
+		stanzaCorrente=this.labirinto.getStanzaCorrente();
 	}
 	
 
@@ -25,7 +28,7 @@ class PartitaTest {
 
 	@Test
 	void testVintaCorrispondenteAllaVittoria() {
-		this.partita.setStanzaCorrente(this.stanzaVincente);
+		this.labirinto.setStanzaCorrente(this.stanzaVincente);
 		assertTrue(this.partita.vinta());
 	}
 	
@@ -37,7 +40,7 @@ class PartitaTest {
 	@Test
 	void testVintaAncheSeNonStanzaInizialeMaNonCorretta() {
 		Stanza stanzaCasuale=new Stanza("NInesistente");
-		this.partita.setStanzaCorrente(stanzaCasuale);
+		this.labirinto.setStanzaCorrente(stanzaCasuale);
 		assertFalse(this.partita.vinta());
 	}
 	
@@ -45,14 +48,14 @@ class PartitaTest {
 	//Controlla se la stanza è giusta, il numero di cfu e se toran true la funziona "vinta()".
 	@Test
 	void testIsFinitaCfuFiniti() {
-		this.partita.setCfu(0);
+		this.giocatore.setCfu(0);
 		assertTrue(this.partita.isFinita());
 		
 		}
 	
 	@Test
 	void testIsFinitaMetodoVinta() {
-		this.partita.setStanzaCorrente(this.stanzaVincente);
+		this.labirinto.setStanzaCorrente(this.stanzaVincente);
 		assertTrue(this.partita.isFinita());
 	}
 	

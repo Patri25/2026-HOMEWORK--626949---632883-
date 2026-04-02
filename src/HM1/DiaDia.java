@@ -31,6 +31,7 @@ public class DiaDia {
 
 	private Partita partita;
 	private Giocatore giocatore;
+	private Labirinto labiritno;
 
 	public DiaDia() {
 		this.partita = new Partita();
@@ -97,15 +98,15 @@ public class DiaDia {
 		if(direzione==null)
 			System.out.println("Dove vuoi andare ?");
 		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
+		prossimaStanza = this.labiritno.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			System.out.println("Direzione inesistente");
 		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
+			this.labiritno.setStanzaCorrente(prossimaStanza);
 			int cfu = this.giocatore.getCfu();
 			this.giocatore.setCfu(cfu-1);
 		}
-		System.out.println(partita.getStanzaCorrente().getDescrizione());
+		System.out.println(labiritno.getStanzaCorrente().getDescrizione());
 	}
 
 	/**

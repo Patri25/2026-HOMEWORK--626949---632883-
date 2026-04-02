@@ -21,13 +21,7 @@ public class Partita {
 		this.stanzaCorrente = this.labirinto.getStanzaCorrente();
 		this.finita = false;
 	}
-	public Stanza getStanzaCorrente() {
-		return this.stanzaCorrente;
-	}
-	
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
-	}
+
 
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta

@@ -15,7 +15,7 @@ class StanzaTest {
 	public void setUp() {
 		stanza= new Stanza("n11");
 		stanzaAdiacente= new Stanza("n12");
-		attrezzo = new Attrezzo("Falce", 6);
+		attrezzo = new Attrezzo("Falce", 1);
 	}
 	
 
@@ -25,7 +25,7 @@ class StanzaTest {
 		//Verifica che venga correttamente impostata la staza adiacente
 		this.stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		//Confronto che queste corrispondano
-		assertEquals(stanzaAdiacente, this.stanza.getStanzaAdiacente("Sopra"));
+		assertEquals(stanzaAdiacente, this.stanza.getStanzaAdiacente("nord"));
 
 	}
 	
@@ -109,6 +109,7 @@ class StanzaTest {
 	
 	@Test
 	public void testgetAttrezzoPresente() {//Verifico che trovi e ritorni un attrezzo presente nella stanza
+		stanza.addAttrezzo(attrezzo);
 		assertEquals(this.attrezzo, this.stanza.getAttrezzo("Falce"));
 	}
 	
@@ -128,20 +129,22 @@ class StanzaTest {
 	
 	@Test
 	public void removeAttrezzoPresente() {//Verifico che rimuova l'attrezzo
-		this.stanza.removeAttrezzo("Falce");//L'errore è normale finchè non è implementata( E' uno dei prossimi punti dell'hw)
+		this.stanza.removeAttrezzo(attrezzo);//L'errore è normale finchè non è implementata( E' uno dei prossimi punti dell'hw)
 		assertFalse(this.stanza.hasAttrezzo("Falce"));
 	}
 	
 	@Test
 	public void removeAttrezzoNonPresente() {//Mi aspetto che torni FALSE (non ho rimosso l'attrezzo che mi hai passato perchè non ci stava)
-		assertFalse(this.stanza.removeAttrezzo("Spellacavi"));
+		Attrezzo nuovoAttrezzo = new Attrezzo("Spellacavi", 1);
+		assertFalse(this.stanza.removeAttrezzo(nuovoAttrezzo));
 	}
 	
 	@Test
 	public void removeAttrezzoSoloIlPrimoConStessoNome() {
-		Attrezzo a2= new Attrezzo("Falce", 6);
+		Attrezzo a2= new Attrezzo("Falce", 1);
+		this.stanza.addAttrezzo(this.attrezzo);
 		this.stanza.addAttrezzo(a2);
-		this.stanza.removeAttrezzo("Falce");
+		this.stanza.removeAttrezzo(attrezzo);
 		assertTrue(this.stanza.hasAttrezzo("Falce"));
 	}
 

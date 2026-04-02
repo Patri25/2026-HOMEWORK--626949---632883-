@@ -16,7 +16,7 @@ class GiocatoreTest {
 	@Test
 	void testCFUIniziali() {
 		//verifico che i CFU iniziali del giocatore siano 20
-		assertEquals(20, this.giocatore.getCFU());
+		assertEquals(20, this.giocatore.getCfu());
 	}
 	
 	@Test
@@ -28,8 +28,8 @@ class GiocatoreTest {
 	@Test
 	void testCambioCFU() {
 		//verifico se, usato setCFU, i CFU risultano cambiati
-		this.giocatore.setCFU(5);
-		assertEquals(5, this.giocatore.getCFU());
+		this.giocatore.setCfu(5);
+		assertEquals(5, this.giocatore.getCfu());
 	}
 
 }

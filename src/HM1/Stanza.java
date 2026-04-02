@@ -139,7 +139,7 @@ public class Stanza {
 		boolean trovato;
 		trovato = false;
 		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
+			if (attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo))
 				trovato = true;
 		}
 		return trovato;
@@ -155,7 +155,7 @@ public class Stanza {
 		Attrezzo attrezzoCercato;
 		attrezzoCercato = null;
 		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
+			if (attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo))
 				attrezzoCercato = attrezzo;
 		}
 		return attrezzoCercato;	
@@ -167,8 +167,20 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		// TODO da implementare
-		return false;
+		// TODO da implementare. FATTO!!
+		boolean rimosso=false;
+		String nomeAttrezzoDaRimuovere=attrezzo.getNome();
+		
+		for(int i=0; i<this.attrezzi.length;i++) {
+			if(this.attrezzi[i] != null && this.attrezzi[i].getNome().equals(nomeAttrezzoDaRimuovere)) {//Se non controllassi null potrei finire in un errore anche se per implementazione non dovrebbe succedere. L'ho aggiunto per sicurezza
+				this.attrezzi[i]=this.attrezzi[numeroAttrezzi -1];
+				this.attrezzi[this.numeroAttrezzi -1]=null;
+				this.numeroAttrezzi--;
+				rimosso =true;
+				break; //In uno dei test controllavo ne togliesse solo 1 corrispondente al nome quindi per non farli fuori tutti devo bloccare il ciclo
+			}
+		}
+		return rimosso;
 	}
 
 
