@@ -36,7 +36,6 @@ class StanzaTest {
 		//1
 		this.stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
 		
-		
 		//2
 		Stanza stanzaSotto=new Stanza("n13");
 		this.stanza.impostaStanzaAdiacente("sud", stanzaSotto);
