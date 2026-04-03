@@ -1,5 +1,9 @@
 package HM1;
 
+/* COSA DEVE FARE?
+ * ha la responsabilità di creare il labirinto, 
+ * di memorizzare la stanza iniziale (entrata) e quella finale (uscita)
+ */
 public class Labirinto {
 	private Stanza stanzaCorrente;
 	private Stanza stanzaVincente;

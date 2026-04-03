@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//bisogna ancora creare la classe giocatore per questo riempie di errori
+
 class GiocatoreTest {
 	private Giocatore giocatore; 
 	

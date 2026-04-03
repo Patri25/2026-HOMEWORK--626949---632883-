@@ -27,7 +27,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
 
 	private Partita partita;
 	private Giocatore giocatore;
@@ -68,6 +68,10 @@ public class DiaDia {
 			return true;
 		} else if (comandoDaEseguire.getNome().equals("vai"))
 			this.vai(comandoDaEseguire.getParametro());
+		else if(comandoDaEseguire.getNome().equals("prendi"))
+			this.prendi(comandoDaEseguire.getParametro());
+		else if(comandoDaEseguire.getNome().equals("posa"))
+			this.posa(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
 		else
@@ -107,6 +111,34 @@ public class DiaDia {
 			this.giocatore.setCfu(cfu-1);
 		}
 		System.out.println(labiritno.getStanzaCorrente().getDescrizione());
+	}
+	//Cerca di prendere un attrezzo dalla stanza e metterlo nella borsa
+	private void prendi(String nomeAttrezzo) {
+		//se  l'utente non specifica cosa prende
+		if(nomeAttrezzo == null) {
+			System.out.println("Prendi cosa? Specifica un oggetto. ;)");
+			return;
+		}
+		
+		//controllo se l'oggetto è presente nella stanza
+		Stanza stanzaCorrente = this.partita.getStanzaCorrente();
+		Borsa borsa = this.partita.getGiocatore().getBorsa();
+		if(!stanzaCorrente.hasAttrezzo(nomeAttrezzo)) {
+			System.out.println("L'attrezzo non è presente in questa stanza. :(");
+			return;
+		}
+		
+		//prendo l'attrezzo
+		Attrezzo attrezzoDaPrendere = stanzaCorrente.getAttrezzo(nomeAttrezzo);
+		//provo a metterlo in borsa(potrebbe essere troppo pesante
+		boolean aggiuntoInBorsa = borsa.addAttrezzo(attrezzoDaPrendere);
+		
+		if(aggiuntoInBorsa) {
+			stanzaCorrente.removeAttrezzo(attrezzoDaPrendere);
+			System.out.println("Hai preso: "+ nomeAttrezzo);
+		} else {
+			System.out.println("Non puoi prendere "+ nomeAttrezzo+ ", non entra nella borsa!");
+		}
 	}
 
 	/**
