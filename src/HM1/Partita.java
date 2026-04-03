@@ -10,7 +10,6 @@ package HM1;
 
 public class Partita {
 
-	private Stanza stanzaCorrente;
 	private Labirinto labirinto;
 	private boolean finita;
 	private Giocatore giocatore;
@@ -18,7 +17,6 @@ public class Partita {
 	
 	public Partita(){
 		this.labirinto = new Labirinto();
-		this.stanzaCorrente = this.labirinto.getStanzaCorrente();
 		this.finita = false;
 		this.giocatore = new Giocatore();
 	}
@@ -29,7 +27,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.stanzaCorrente == this.labirinto.getStanzaVincente();
+		return this.labirinto.getStanzaCorrente() == this.labirinto.getStanzaVincente();
 	}
 
 	/**
@@ -50,6 +48,10 @@ public class Partita {
 	
 	public Giocatore getGiocatore() {
 		return this.giocatore;
+	}
+	
+	public Labirinto getLabirinto() {
+		return this.labirinto;
 	}
 
 	
