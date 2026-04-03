@@ -1,4 +1,6 @@
-package HM1;
+package it.uniroma3.diadia.ambienti;
+
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /* COSA DEVE FARE?
  * ha la responsabilità di creare il labirinto, 

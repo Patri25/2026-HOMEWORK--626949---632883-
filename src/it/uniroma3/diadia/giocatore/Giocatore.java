@@ -1,5 +1,4 @@
-package HM1;
-
+package it.uniroma3.diadia.giocatore;
 
 /* COSA DEVE FARE?
  * ha la responsabilità di gestire i CFU del giocatore e di
