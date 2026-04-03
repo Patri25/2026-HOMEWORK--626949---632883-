@@ -121,7 +121,7 @@ public class DiaDia {
 		}
 		
 		//controllo se l'oggetto è presente nella stanza
-		Stanza stanzaCorrente = this.partita.getStanzaCorrente(); //!!!! STANZACORRENTE STA IN LABIRITNO NON IN PARTITA
+		Stanza stanzaCorrente = this.labiritno.getStanzaCorrente(); //!!!! STANZACORRENTE STA IN LABIRITNO NON IN PARTITA
 		Borsa borsa = this.partita.getGiocatore().getBorsa();
 		if(!stanzaCorrente.hasAttrezzo(nomeAttrezzo)) {
 			System.out.println("L'attrezzo non è presente in questa stanza. :(");
@@ -150,7 +150,7 @@ public class DiaDia {
 				}
 				
 				//controllo se l'oggetto è presente nella borsa
-				Stanza stanzaCorrente = this.partita.getStanzaCorrente();
+				Stanza stanzaCorrente = this.labiritno.getStanzaCorrente();
 				Borsa borsa = this.partita.getGiocatore().getBorsa();
 				if(!borsa.hasAttrezzo(nomeAttrezzo)) {
 					System.out.println("L'attrezzo non è presente nella tua borsa. :(");
