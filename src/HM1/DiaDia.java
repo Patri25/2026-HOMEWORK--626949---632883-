@@ -130,7 +130,7 @@ public class DiaDia {
 		
 		//prendo l'attrezzo
 		Attrezzo attrezzoDaPrendere = stanzaCorrente.getAttrezzo(nomeAttrezzo);
-		//provo a metterlo in borsa(potrebbe essere troppo pesante
+		//provo a metterlo in borsa (potrebbe essere troppo pesante)
 		boolean aggiuntoInBorsa = borsa.addAttrezzo(attrezzoDaPrendere);
 		
 		if(aggiuntoInBorsa) {
@@ -139,6 +139,35 @@ public class DiaDia {
 		} else {
 			System.out.println("Non puoi prendere "+ nomeAttrezzo+ ", non entra nella borsa!");
 		}
+	}
+	
+	//tolgo un oggetto dalla borsa e lo poggio nella stanza
+	private void posa(String nomeAttrezzo) {
+		//se  l'utente non specifica cosa prende
+				if(nomeAttrezzo == null) {
+					System.out.println("Posi cosa? Specifica un oggetto. ;)");
+					return;
+				}
+				
+				//controllo se l'oggetto è presente nella borsa
+				Stanza stanzaCorrente = this.partita.getStanzaCorrente();
+				Borsa borsa = this.partita.getGiocatore().getBorsa();
+				if(!borsa.hasAttrezzo(nomeAttrezzo)) {
+					System.out.println("L'attrezzo non è presente nella tua borsa. :(");
+					return;
+				}
+				
+				//prendo l'attrezzo
+				Attrezzo attrezzoDaPosare = borsa.getAttrezzo(nomeAttrezzo);
+				//provo a lasciarlo nella stanza(potrebbero già esserci 10 attrezzi che è il massimo)
+				boolean aggiuntoInStanza = stanzaCorrente.addAttrezzo(attrezzoDaPosare);
+				
+				if(aggiuntoInStanza) {
+					borsa.removeAttrezzo(nomeAttrezzo);
+					System.out.println("Hai posato: "+ nomeAttrezzo);
+				} else {
+					System.out.println("Non puoi posare attrezzi in questa stanza, è già piena!");
+				}
 	}
 
 	/**
