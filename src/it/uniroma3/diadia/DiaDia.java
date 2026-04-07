@@ -89,6 +89,9 @@ public class DiaDia {
 		if (this.partita.vinta()) {
 			this.ioc.mostraMessaggio("Hai vinto!");
 			return true;
+		} else if(this.partita.getGiocatore().getCfu()==0){
+			this.ioc.mostraMessaggio("Hai esaurito i CFU!"+"HAI PERSO");
+			return true;
 		} else
 			return false;
 	}   
@@ -109,8 +112,10 @@ public class DiaDia {
 	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
 	 */
 	private void vai(String direzione) {
-		if(direzione==null)
+		if(direzione==null) {
 			this.ioc.mostraMessaggio("Dove vuoi andare ?");
+			return;
+		}
 		Stanza prossimaStanza = null;
 		prossimaStanza = this.labiritno.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
