@@ -57,6 +57,14 @@ public class Partita {
 	public Labirinto getLabirinto() {
 		return this.labirinto;
 	}
+	
+	public Stanza getStanzaCorrente() {
+		return this.labirinto.getStanzaCorrente();
+	}
+	
+	public void setStanzaCorrente(Stanza stanzaCorrente) {
+		this.labirinto.setStanzaCorrente(stanzaCorrente);
+	}
 
 	
 }

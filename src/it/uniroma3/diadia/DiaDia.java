@@ -36,15 +36,15 @@ public class DiaDia {
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
 
 	private Partita partita;
-	private Giocatore giocatore;
-	private Labirinto labiritno;
+	//private Giocatore giocatore;
+	//private Labirinto labiritno;
 	private IOConsole ioc;
 
 	public DiaDia(IOConsole ioc) {
 		this.partita = new Partita();
 		this.ioc=ioc;
-		this.labiritno= this.partita.getLabirinto();
-		this.giocatore=this.partita.getGiocatore();
+		//this.labiritno= this.partita.getLabirinto();
+		//this.giocatore=this.partita.getGiocatore();
 	}
 
 	public void gioca() {
@@ -117,15 +117,15 @@ public class DiaDia {
 			return;
 		}
 		Stanza prossimaStanza = null;
-		prossimaStanza = this.labiritno.getStanzaCorrente().getStanzaAdiacente(direzione);
+		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			this.ioc.mostraMessaggio("Direzione inesistente");
 		else {
-			this.labiritno.setStanzaCorrente(prossimaStanza);
-			int cfu = this.giocatore.getCfu();
-			this.giocatore.setCfu(cfu-1);
+			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+			int cfu = this.partita.getGiocatore().getCfu();
+			this.partita.getGiocatore().setCfu(cfu-1);
 		}
-		this.ioc.mostraMessaggio(labiritno.getStanzaCorrente().getDescrizione());
+		this.ioc.mostraMessaggio(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	}
 	//Cerca di prendere un attrezzo dalla stanza e metterlo nella borsa
 	private void prendi(String nomeAttrezzo) {
@@ -136,7 +136,7 @@ public class DiaDia {
 		}
 		
 		//controllo se l'oggetto è presente nella stanza
-		Stanza stanzaCorrente = this.labiritno.getStanzaCorrente(); //!!!! STANZACORRENTE STA IN LABIRITNO NON IN PARTITA
+		Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente(); //!!!! STANZACORRENTE STA IN LABIRITNO NON IN PARTITA
 		Borsa borsa = this.partita.getGiocatore().getBorsa();
 		if(!stanzaCorrente.hasAttrezzo(nomeAttrezzo)) {
 			this.ioc.mostraMessaggio("L'attrezzo non è presente in questa stanza. :(");
@@ -165,7 +165,7 @@ public class DiaDia {
 				}
 				
 				//controllo se l'oggetto è presente nella borsa
-				Stanza stanzaCorrente = this.labiritno.getStanzaCorrente();
+				Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
 				Borsa borsa = this.partita.getGiocatore().getBorsa();
 				if(!borsa.hasAttrezzo(nomeAttrezzo)) {
 					this.ioc.mostraMessaggio("L'attrezzo non è presente nella tua borsa. :(");
