@@ -1,4 +1,8 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
+
+import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.Tempcomando;
 
 public class ComandoGuarda implements Tempcomando{
 	private Partita partita;
@@ -28,6 +32,17 @@ public class ComandoGuarda implements Tempcomando{
 	public void setParametro(String parametro) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getNome() {
+		return ("guarda");
+	}
+
+	@Override
+	public String getParamtro() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

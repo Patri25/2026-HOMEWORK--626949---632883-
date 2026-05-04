@@ -1,4 +1,8 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
+
+import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.Tempcomando;
 
 public class ComandoAiuto implements Tempcomando {
 	private IOConsole ioc;
@@ -23,6 +27,16 @@ public class ComandoAiuto implements Tempcomando {
 	public void setParametro(String parametro) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getNome() {
+		return ("aiuto");
+	}
+
+	@Override
+	public String getParamtro() {
+		return null;
 	}
 
 }

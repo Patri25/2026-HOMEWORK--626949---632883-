@@ -1,5 +1,8 @@
-package it.uniroma3.diadia;
+package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.Tempcomando;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class ComandoVai implements Tempcomando{
@@ -35,6 +38,18 @@ public class ComandoVai implements Tempcomando{
 	public void setParametro(String parametro) {
 		this.direzione=parametro;
 		
+	}
+
+	@Override
+	public String getNome() {
+		// TODO Auto-generated method stub
+		return ("vai");
+	}
+
+	@Override
+	public String getParamtro() {
+		// TODO Auto-generated method stub
+		return this.direzione;
 	}
 
 }

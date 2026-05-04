@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.uniroma3.diadia.ComandoPosa;
-import it.uniroma3.diadia.ComandoPrendi;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.comandi.ComandoPosa;
+import it.uniroma3.diadia.comandi.ComandoPrendi;
 
 class ComandoPrendiTest {
 	
