@@ -1,14 +1,15 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.Tempcomando;
 
 public class ComandoSconosciuto implements Tempcomando{
 	private Partita partita;
-	private IOConsole ioc;
+	private IO ioc;
 	
-	public ComandoSconosciuto(IOConsole ioc) {
+	public ComandoSconosciuto(IO ioc) {
 		this.ioc=ioc;
 	}
 	@Override
