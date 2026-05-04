@@ -65,6 +65,7 @@ public class Partita {
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
 		this.labirinto.setStanzaCorrente(stanzaCorrente);
 	}
+	
 
 	
 }
