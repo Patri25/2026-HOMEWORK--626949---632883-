@@ -33,7 +33,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
+	
 
 	private Partita partita;
 	//private Giocatore giocatore;
@@ -65,132 +65,19 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		
-		
-		Comando comandoDaEseguire = new Comando(istruzione);
-		
-		if (comandoDaEseguire.sconosciuto()) { //Se comando vuoto o non riconosciuto da la possibilità di scriverne in altro senza crashare
-	        return false; 
+		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica(this.ioc);
+	    Tempcomando comandoDaEseguire = factory.costruisciComando(istruzione);
+	    comandoDaEseguire.esegui(this.partita);
+
+	    if (this.partita.vinta()) {
+	        this.ioc.mostraMessaggio("Hai vinto!");
+	        return true;
+	    } else if (this.partita.getGiocatore().getCfu() == 0) {
+	        this.ioc.mostraMessaggio("Hai esaurito i CFU! HAI PERSO");
+	        return true;
 	    }
-
-		if (comandoDaEseguire.getNome().equals("fine")) {
-			this.fine(); 
-			return true;
-		} else if (comandoDaEseguire.getNome().equals("vai"))
-			this.vai(comandoDaEseguire.getParametro());
-		else if(comandoDaEseguire.getNome().equals("prendi"))
-			this.prendi(comandoDaEseguire.getParametro());
-		else if(comandoDaEseguire.getNome().equals("posa"))
-			this.posa(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("aiuto"))
-			this.aiuto();
-		else
-			this.ioc.mostraMessaggio("Comando sconosciuto");
-		if (this.partita.vinta()) {
-			this.ioc.mostraMessaggio("Hai vinto!");
-			return true;
-		} else if(this.partita.getGiocatore().getCfu()==0){
-			this.ioc.mostraMessaggio("Hai esaurito i CFU!"+"HAI PERSO");
-			return true;
-		} else
-			return false;
+	    return this.partita.isFinita();
 	}   
-
-	// implementazioni dei comandi dell'utente:
-
-	/**
-	 * Stampa informazioni di aiuto.
-	 */
-	private void aiuto() {
-		for(int i=0; i< elencoComandi.length; i++) 
-			this.ioc.mostraMessaggio(elencoComandi[i]+" ");
-		this.ioc.mostraMessaggio("");
-	}
-
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
-	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
-	 */
-	private void vai(String direzione) {
-		if(direzione==null) {
-			this.ioc.mostraMessaggio("Dove vuoi andare ?");
-			return;
-		}
-		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
-		if (prossimaStanza == null)
-			this.ioc.mostraMessaggio("Direzione inesistente");
-		else {
-			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getGiocatore().getCfu();
-			this.partita.getGiocatore().setCfu(cfu-1);
-		}
-		this.ioc.mostraMessaggio(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
-	}
-	//Cerca di prendere un attrezzo dalla stanza e metterlo nella borsa
-	private void prendi(String nomeAttrezzo) {
-		//se  l'utente non specifica cosa prende
-		if(nomeAttrezzo == null) {
-			this.ioc.mostraMessaggio("Prendi cosa? Specifica un oggetto. ;)");
-			return;
-		}
-		
-		//controllo se l'oggetto è presente nella stanza
-		Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente(); //!!!! STANZACORRENTE STA IN LABIRITNO NON IN PARTITA
-		Borsa borsa = this.partita.getGiocatore().getBorsa();
-		if(!stanzaCorrente.hasAttrezzo(nomeAttrezzo)) {
-			this.ioc.mostraMessaggio("L'attrezzo non è presente in questa stanza. :(");
-			return;
-		}
-		
-		//prendo l'attrezzo
-		Attrezzo attrezzoDaPrendere = stanzaCorrente.getAttrezzo(nomeAttrezzo);
-		//provo a metterlo in borsa (potrebbe essere troppo pesante)
-		boolean aggiuntoInBorsa = borsa.addAttrezzo(attrezzoDaPrendere);
-		
-		if(aggiuntoInBorsa) {
-			stanzaCorrente.removeAttrezzo(attrezzoDaPrendere);
-			this.ioc.mostraMessaggio("Hai preso: "+ nomeAttrezzo);
-		} else {
-			this.ioc.mostraMessaggio("Non puoi prendere "+ nomeAttrezzo+ ", non entra nella borsa!");
-		}
-	}
-	
-	//tolgo un oggetto dalla borsa e lo poggio nella stanza
-	private void posa(String nomeAttrezzo) {
-		//se  l'utente non specifica cosa prende
-				if(nomeAttrezzo == null) {
-					this.ioc.mostraMessaggio("Posi cosa? Specifica un oggetto. ;)");
-					return;
-				}
-				
-				//controllo se l'oggetto è presente nella borsa
-				Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
-				Borsa borsa = this.partita.getGiocatore().getBorsa();
-				if(!borsa.hasAttrezzo(nomeAttrezzo)) {
-					this.ioc.mostraMessaggio("L'attrezzo non è presente nella tua borsa. :(");
-					return;
-				}
-				
-				//prendo l'attrezzo
-				Attrezzo attrezzoDaPosare = borsa.getAttrezzo(nomeAttrezzo);
-				//provo a lasciarlo nella stanza(potrebbero già esserci 10 attrezzi che è il massimo)
-				boolean aggiuntoInStanza = stanzaCorrente.addAttrezzo(attrezzoDaPosare);
-				
-				if(aggiuntoInStanza) {
-					borsa.removeAttrezzo(nomeAttrezzo);
-					this.ioc.mostraMessaggio("Hai posato: "+ nomeAttrezzo);
-				} else {
-					this.ioc.mostraMessaggio("Non puoi posare attrezzi in questa stanza, è già piena!");
-				}
-	}
-
-	/**
-	 * Comando "Fine".
-	 */
-	private void fine() {
-		this.ioc.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
-	}
 
 	public static void main(String[] argc) {
 		IOConsole ioc=new IOConsole();
