@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.Tempcomando;
@@ -7,10 +8,10 @@ import it.uniroma3.diadia.ambienti.Stanza;
 
 public class ComandoVai implements Tempcomando{
 	private String direzione;
-	private IOConsole ioc;
+	private IO ioc;
 	private Partita partita;
 	
-	public ComandoVai(IOConsole ioc) {
+	public ComandoVai(IO ioc) {
 		this.ioc=ioc;
 	}
 

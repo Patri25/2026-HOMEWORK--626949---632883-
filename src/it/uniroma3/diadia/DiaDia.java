@@ -40,9 +40,9 @@ public class DiaDia {
 	private Partita partita;
 	//private Giocatore giocatore;
 	//private Labirinto labiritno;
-	private IOConsole ioc;
+	private IO ioc;
 
-	public DiaDia(IOConsole ioc) {
+	public DiaDia(IO ioc) {
 		this.partita = new Partita();
 		this.ioc=ioc;
 		//this.labiritno= this.partita.getLabirinto();
@@ -82,8 +82,8 @@ public class DiaDia {
 	}   
 
 	public static void main(String[] argc) {
-		IOConsole ioc=new IOConsole();
-		DiaDia gioco = new DiaDia(ioc);
+		IO io=new IOConsole();
+		DiaDia gioco = new DiaDia(io);
 		gioco.gioca();
 	}
 }

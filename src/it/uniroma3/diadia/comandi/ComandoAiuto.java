@@ -1,16 +1,17 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.Tempcomando;
 
 public class ComandoAiuto implements Tempcomando {
-	private IOConsole ioc;
+	private IO ioc;
 	
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
 	
 	
-	public ComandoAiuto(IOConsole ioc) {
+	public ComandoAiuto(IO ioc) {
         this.ioc = ioc;
     }
 	

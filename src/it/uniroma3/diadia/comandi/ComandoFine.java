@@ -1,14 +1,15 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.Tempcomando;
 
 public class ComandoFine implements Tempcomando {
 	private Partita partita;
-	private IOConsole ioc;
+	private IO ioc;
 	
-	public ComandoFine(IOConsole ioc) {
+	public ComandoFine(IO ioc) {
         this.ioc = ioc;
     }
 

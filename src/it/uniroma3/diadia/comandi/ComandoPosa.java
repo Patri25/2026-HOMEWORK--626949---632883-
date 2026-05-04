@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.Tempcomando;
@@ -9,11 +10,11 @@ import it.uniroma3.diadia.giocatore.Borsa;
 
 public class ComandoPosa implements Tempcomando {
 	private String nomeAttrezzo;
-	private IOConsole ioc;
+	private IO ioc;
 	private Partita partita;
 	
 	
-	public ComandoPosa(IOConsole ioc) { 
+	public ComandoPosa(IO ioc) { 
         this.ioc = ioc;
     }
 	
