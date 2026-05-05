@@ -3,6 +3,7 @@ package HM1;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBuia;
@@ -13,7 +14,7 @@ public class StanzaBuiaTest {
     private StanzaBuia stanzaBuia;
     private Attrezzo lanterna;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         stanzaBuia = new StanzaBuia("Cripta", "lanterna");
         lanterna = new Attrezzo("lanterna", 1);
