@@ -35,7 +35,7 @@ public class StanzaBloccata extends Stanza {
 			return super.getDescrizione();
 		}
 		
-		return "la direzione "+ this.direzioneBloccata + "è bloccata. Hai bisogno di " +  this.attrezzoPerSbloccare + " per aprirla. "+ super.getDescrizione();
+		return "la direzione "+ this.direzioneBloccata + " è bloccata. Hai bisogno di " +  this.attrezzoPerSbloccare + " per aprirla. "+ super.getDescrizione();
 	}
 	
 	

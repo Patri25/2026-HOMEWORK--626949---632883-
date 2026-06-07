@@ -2,6 +2,12 @@ package HM1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +16,16 @@ import it.uniroma3.diadia.giocatore.Borsa;
 
 class BorsaTest {
 	private Borsa borsa;
+	private Attrezzo piuma;
+	private Attrezzo libro;
+	private Attrezzo piombo;
 	
 	@BeforeEach
 	public void setUp() {
 		this.borsa = new Borsa();
+		this.piuma = new Attrezzo("piuma", 1);
+		this.libro = new Attrezzo("libro", 3);
+		this.piombo = new Attrezzo("piombo", 3);
 	}
 	
 	@Test
@@ -68,5 +80,70 @@ class BorsaTest {
 		this.borsa.addAttrezzo(flauto);
 		assertEquals(flauto, this.borsa.getAttrezzo("flauto"));
 	}
+	
+	@Test
+	public void testGetSortedSetOrdinatoPerPeso_StessoPesoNomeDiverso() {
+
+		Attrezzo osso = new Attrezzo("osso", 2);
+		Attrezzo ferro = new Attrezzo("ferro", 2);
+		
+		this.borsa.addAttrezzo(osso);
+		this.borsa.addAttrezzo(ferro);
+		
+		SortedSet<Attrezzo> ordinati = this.borsa.getSortedSetOrdinatoPerPeso();
+		
+		assertEquals(2, ordinati.size());
+		
+		Iterator<Attrezzo> it = ordinati.iterator();
+		assertEquals("ferro", it.next().getNome()); 
+		assertEquals("osso", it.next().getNome());
+	}
+	
+	@Test
+	public void testGetContenutoOrdinatoPerPeso() {
+		this.borsa.addAttrezzo(piombo);
+		this.borsa.addAttrezzo(piuma);
+		this.borsa.addAttrezzo(libro);
+
+		List<Attrezzo> lista = this.borsa.getContenutoOrdinatoPerPeso();
+		assertEquals(3, lista.size());
+		assertEquals(this.piuma, lista.get(0));
+		assertEquals(this.libro, lista.get(1));
+		assertEquals(this.piombo, lista.get(2));
+	}
+
+	@Test
+	public void testGetContenutoOrdinatoPerNome() {
+		this.borsa.addAttrezzo(piombo);
+		this.borsa.addAttrezzo(piuma);
+		this.borsa.addAttrezzo(libro);
+
+		SortedSet<Attrezzo> set = this.borsa.getContenutoOrdinatoPerNome();
+		assertEquals(3, set.size());
+		Iterator<Attrezzo> it = set.iterator();
+		assertEquals(this.libro, it.next());
+		assertEquals(this.piombo, it.next());
+		assertEquals(this.piuma, it.next());
+	}
+
+	@Test
+	public void testGetContenutoRaggruppatoPerPeso() {
+		this.borsa.addAttrezzo(piombo); 
+		this.borsa.addAttrezzo(piuma);  
+		this.borsa.addAttrezzo(libro);  
+
+		Map<Integer, Set<Attrezzo>> mappa = this.borsa.getContenutoRaggruppatoPerPeso();
+		
+		assertTrue(mappa.containsKey(1), "Manca la chiave 1");
+		assertTrue(mappa.containsKey(3), "Manca la chiave 3");
+		
+		assertEquals(1, mappa.get(1).size());
+		assertTrue(mappa.get(1).contains(this.piuma));
+		
+		assertTrue(mappa.get(3).contains(this.libro));
+		assertTrue(mappa.get(3).contains(this.piombo));
+	}
+	
+	
 	
 }
