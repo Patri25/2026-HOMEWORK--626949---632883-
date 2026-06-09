@@ -25,6 +25,12 @@ public class Partita {
 		this.giocatore = new Giocatore();
 	}
 
+	public Partita(Labirinto labirinto){
+		this.labirinto = labirinto;
+		this.finita = false;
+		this.giocatore = new Giocatore();
+	}
+
 
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta
@@ -58,6 +64,10 @@ public class Partita {
 		return this.labirinto;
 	}
 	
+	public void setLabirinto(Labirinto labirinto) {
+		this.labirinto = labirinto;
+	}
+	
 	public Stanza getStanzaCorrente() {
 		return this.labirinto.getStanzaCorrente();
 	}
@@ -65,7 +75,5 @@ public class Partita {
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
 		this.labirinto.setStanzaCorrente(stanzaCorrente);
 	}
-	
-
 	
 }

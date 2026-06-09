@@ -4,6 +4,7 @@ package it.uniroma3.diadia;
 import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
@@ -18,9 +19,8 @@ import it.uniroma3.diadia.giocatore.Giocatore;
  * Questa e' la classe principale crea e istanzia tutte le altre
  *
  * @author  docente di POO 
- *         (da un'idea di Michael Kolling and David J. Barnes) 
- *          
- * @version base
+ * (da un'idea di Michael Kolling and David J. Barnes) 
+ * * @version base
  */
 
 public class DiaDia {
@@ -47,6 +47,11 @@ public class DiaDia {
 		this.ioc=ioc;
 		//this.labiritno= this.partita.getLabirinto();
 		//this.giocatore=this.partita.getGiocatore();
+	}
+
+	public DiaDia(Labirinto labirinto, IO ioc) {
+		this.partita = new Partita(labirinto);
+		this.ioc = ioc;
 	}
 
 	public void gioca() {
@@ -82,8 +87,15 @@ public class DiaDia {
 	}   
 
 	public static void main(String[] argc) {
-		IO io=new IOConsole();
-		DiaDia gioco = new DiaDia(io);
+		/* N.B. unica istanza di IOConsole
+		di cui sia ammessa la creazione */
+		IO io = new IOConsole();
+		Labirinto labirinto = new LabirintoBuilder()
+			.addStanzaIniziale("LabCampusOne")
+			.addStanzaVincente("Biblioteca")
+			.addAdiacenza("LabCampusOne", "Biblioteca", "ovest")
+			.getLabirinto();
+		DiaDia gioco = new DiaDia(labirinto, io);
 		gioco.gioca();
 	}
 }
