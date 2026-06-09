@@ -3,41 +3,28 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.Tempcomando;
 
-public class ComandoAiuto implements Tempcomando {
+public class ComandoAiuto extends AbstractComando {
 	private IO ioc;
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi", "posa"};
-	
+	public ComandoAiuto() {
+		this.ioc = new IOConsole();
+	}
 	
 	public ComandoAiuto(IO ioc) {
-        this.ioc = ioc;
-    }
+		this.ioc = ioc;
+	}
 	
 	@Override
 	public void esegui(Partita partita) {
-
-		for(int i=0; i< elencoComandi.length; i++) 
-			this.ioc.mostraMessaggio(elencoComandi[i]+" ");
-		this.ioc.mostraMessaggio(""); 
+		StringBuilder aiuti = new StringBuilder();
 		
-	}
+		for (String cmd : AbstractComando.getComandiDisponibili()) {
 
-	@Override
-	public void setParametro(String parametro) {
-		// TODO Auto-generated method stub
-		
+			if (!cmd.equals("nonvalido") && !cmd.equals("sconosciuto")) {
+				aiuti.append(cmd).append(" ");
+			}
+		}
+		this.ioc.mostraMessaggio("Comandi disponibili: " + aiuti.toString());
 	}
-
-	@Override
-	public String getNome() {
-		return ("aiuto");
-	}
-
-	@Override
-	public String getParamtro() {
-		return null;
-	}
-
 }

@@ -3,11 +3,14 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.Tempcomando;
 
-public class ComandoGuarda implements Tempcomando{
+public class ComandoGuarda extends AbstractComando {
 	private Partita partita;
 	private IO ioc;
+	
+	public ComandoGuarda() {
+		this.ioc = new IOConsole();
+	}
 	
 	public ComandoGuarda(IO ioc) {
 		this.ioc=ioc;
@@ -27,23 +30,6 @@ public class ComandoGuarda implements Tempcomando{
         this.ioc.mostraMessaggio("Contenuto borsa: " + partita.getGiocatore().getBorsa().toString());
 		
 		
-	}
-
-	@Override
-	public void setParametro(String parametro) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getNome() {
-		return ("guarda");
-	}
-
-	@Override
-	public String getParamtro() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

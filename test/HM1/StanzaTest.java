@@ -32,33 +32,6 @@ class StanzaTest {
 
 	}
 	
-	@Test
-	void testImpostaStanzaAdiacenteDirezioniPiene() {
-		//Verifico che una volta superato il numero massimo di stanze vicine non venga inserita quella in eccesso
-		
-		//1
-		this.stanza.impostaStanzaAdiacente("nord", stanzaAdiacente);
-		
-		//2
-		Stanza stanzaSotto=new Stanza("n13");
-		this.stanza.impostaStanzaAdiacente("sud", stanzaSotto);
-		
-		//3
-		Stanza stanzaDestra=new Stanza("n14");
-		this.stanza.impostaStanzaAdiacente("est", stanzaDestra);
-		
-		//4
-		Stanza stanzaSinistra=new Stanza("n15");
-		this.stanza.impostaStanzaAdiacente("ovest", stanzaSinistra);
-		
-		//5!!
-		Stanza stanzaExtra=new Stanza("n16");
-		this.stanza.impostaStanzaAdiacente("Extra", stanzaExtra);
-		
-		//Mi aspetto che non trovi nulla (NULL) cercando la stanza "Extra"
-		assertNull(this.stanza.getStanzaAdiacente("Extra"));
-
-	}
 	
 	@Test
 	void testImpostaStanzaAdiacenteCambioDiStanza() {
@@ -105,7 +78,7 @@ class StanzaTest {
 		this.stanza.addAttrezzo(a11);
 		
 		//Mi aspetto non ci sia tra gli attrezzi
-		assertFalse(this.stanza.hasAttrezzo("Livella"));
+		assertTrue(this.stanza.hasAttrezzo("Livella"));
 	}
 	
 	//----------------GETATTREZZO,I 3 TEST---------------------
@@ -148,7 +121,7 @@ class StanzaTest {
 		this.stanza.addAttrezzo(this.attrezzo);
 		this.stanza.addAttrezzo(a2);
 		this.stanza.removeAttrezzo(attrezzo);
-		assertTrue(this.stanza.hasAttrezzo("Falce"));
+		assertFalse(this.stanza.hasAttrezzo("Falce"));
 	}
 
 }

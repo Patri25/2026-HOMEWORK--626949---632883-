@@ -9,6 +9,7 @@ import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.FabbricaDiComandi;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiIntrospettiva;
 import it.uniroma3.diadia.giocatore.Borsa;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
@@ -72,7 +73,7 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		FabbricaDiComandi factory = new FabbricaDiComandiFisarmonica(this.ioc);
+		FabbricaDiComandi factory = new FabbricaDiComandiIntrospettiva(this.ioc);
 	    Tempcomando comandoDaEseguire = factory.costruisciComando(istruzione);
 	    comandoDaEseguire.esegui(this.partita);
 

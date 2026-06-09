@@ -9,7 +9,7 @@ public class IOSimulator implements IO {
 
 	private List<String> comandiLetti;
 	private List<String> messaggiProdotti;
-	// Usiamo l'indice del comando come chiave per evitare che comandi uguali si sovrascrivano
+
 	private Map<Integer, List<String>> messaggiPerPasso;
 	private int indiceProssimoComando;
 
@@ -23,7 +23,7 @@ public class IOSimulator implements IO {
 	@Override
 	public String leggiRiga() {
 		if (this.indiceProssimoComando >= this.comandiLetti.size()) {
-			return null; // Evita eccezioni se i comandi finiscono prima del previsto
+			return null; 
 		}
 		String comando = this.comandiLetti.get(this.indiceProssimoComando);
 		this.messaggiPerPasso.put(this.indiceProssimoComando, new ArrayList<>());

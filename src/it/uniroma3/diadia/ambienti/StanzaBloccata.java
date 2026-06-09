@@ -6,9 +6,9 @@ public class StanzaBloccata extends Stanza {
 	private String attrezzoPerSbloccare;
 	private static String ATTREZZOPERSBLOCCAREDEFAULT="chiave";
 	
-	public StanzaBloccata(String nome, String direzioneBloccata, String attrezzoPerSbloccare) {
+	public StanzaBloccata(String nome, String dir, String attrezzoPerSbloccare) {
 		super(nome);
-		this.direzioneBloccata=direzioneBloccata;
+		this.direzioneBloccata=dir;
 		this.attrezzoPerSbloccare=attrezzoPerSbloccare;
 	}
 	
@@ -16,7 +16,6 @@ public class StanzaBloccata extends Stanza {
 		this(nome, direzioneBloccata,ATTREZZOPERSBLOCCAREDEFAULT);
 	}
 	
-	@Override
 	public Stanza getStanzaAdiacente(String direzione) {
 		
 		if(this.hasAttrezzo(this.attrezzoPerSbloccare) || !direzione.equals(direzioneBloccata)) {

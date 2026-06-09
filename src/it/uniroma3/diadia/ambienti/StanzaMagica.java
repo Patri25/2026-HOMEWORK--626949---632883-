@@ -34,7 +34,7 @@ public class StanzaMagica extends Stanza{
 		if(this.contaAttrezziPosati >sogliaMagica) {
 			attrezzo = modificaAttrezzo(attrezzo);
 		}
-		return super.addAttrezzo(attrezzo); //Richiama la funzine della superclasse!
+		return super.addAttrezzo(attrezzo);
 		
 	}
 }

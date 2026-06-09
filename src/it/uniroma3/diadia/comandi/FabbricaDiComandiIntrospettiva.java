@@ -31,18 +31,17 @@ public class FabbricaDiComandiIntrospettiva implements FabbricaDiComandi {
 		}
 
 		try {
-			// Costruisce dinamicamente il nome della classe: es "vai" -> "ComandoVai"
+
 			String nomeClasse = "it.uniroma3.diadia.comandi.Comando" + 
 					Character.toUpperCase(nomeComando.charAt(0)) + 
 					nomeComando.substring(1);
 			
-			// Usa la Reflection per istanziare l'oggetto
+
 			comando = (Tempcomando) Class.forName(nomeClasse).getDeclaredConstructor().newInstance();
 			comando.setParametro(parametro);
 			
 		} catch (Exception e) {
-			// Cattura ClassNotFoundException, InstantiationException, IllegalAccessException, ecc.
-			// Se la classe non esiste o non può essere istanziata, restituisce ComandoNonValido
+
 			comando = new ComandoNonValido();
 			comando.setParametro(parametro);
 		} finally {

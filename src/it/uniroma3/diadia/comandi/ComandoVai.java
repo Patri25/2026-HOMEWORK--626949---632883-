@@ -1,19 +1,20 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.Tempcomando;
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 
-public class ComandoVai implements Tempcomando {
-	private String direzione;
+public class ComandoVai extends AbstractComando {
+	
 	private IO ioc;
 	private Partita partita;
 	
 	public ComandoVai() {
+		this.ioc = new IOConsole();
 	}
 
-	// Costruttore originale
 	public ComandoVai(IO ioc) {
 		this.ioc = ioc;
 	}
@@ -21,42 +22,35 @@ public class ComandoVai implements Tempcomando {
 	@Override
 	public void esegui(Partita partita) {
 		this.partita = partita;
-		if (direzione == null) {
-			// Controllo di sicurezza su ioc
-			if (this.ioc != null) {
-				this.ioc.mostraMessaggio("Dove vuoi andare ?");
-			}
+		String direzioneStringa = this.getParamtro(); 
+		
+		if (direzioneStringa == null) {
+			this.ioc.mostraMessaggio("Dove vuoi andare ?");
 			return;
 		}
 		
-		Stanza prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
+		Direzione direzioneEnum;
+		try {
+
+			//NON RIESCO A RISOLVERE QUESTO PROBLEMA, SE CAMBIO QUESTO ALTRE CLASSI DANNO ERRORE E ECLIPSE NON DA SUGGERIMENTI UTILI
+			direzioneEnum = Direzione.valueOf(direzioneStringa);
+		} catch (IllegalArgumentException e) {
+
+			this.ioc.mostraMessaggio("Direzione inesistente o non valida!");
+			return;
+		}
+		
+
+		Stanza prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzioneEnum);
+		
 		if (prossimaStanza == null) {
-			if (this.ioc != null) {
-				this.ioc.mostraMessaggio("Direzione inesistente");
-			}
+			this.ioc.mostraMessaggio("Non c'e' una porta in quella direzione");
 		} else {
 			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
 			int cfu = this.partita.getGiocatore().getCfu();
 			this.partita.getGiocatore().setCfu(cfu - 1);
 		}
 		
-		if (this.ioc != null) {
-			this.ioc.mostraMessaggio(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
-		}
-	}
-
-	@Override
-	public void setParametro(String parametro) {
-		this.direzione = parametro;
-	}
-
-	@Override
-	public String getNome() {
-		return "vai";
-	}
-
-	@Override
-	public String getParamtro() { // Mantenuto uguale alla tua interfaccia
-		return this.direzione;
+		this.ioc.mostraMessaggio(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	}
 }

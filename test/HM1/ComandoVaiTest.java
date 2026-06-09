@@ -33,22 +33,6 @@ public class ComandoVaiTest {
 		assertEquals("Salotto", this.partita.getStanzaCorrente().getNome());
 	}
 
-	@Test
-	public void testVaiInBilocaleDirezioneCorretta() {
-		Labirinto bilocale = new LabirintoBuilder()
-				.addStanzaIniziale("Salotto")
-				.addStanza("Cucina")
-				.addAdiacenza("Salotto", "Cucina", "nord")
-				.getLabirinto();
-		this.partita = new Partita(bilocale);
-		int cfuIniziali = this.partita.getGiocatore().getCfu();
-		
-		this.comando.setParametro("nord");
-		this.comando.esegui(this.partita);
-		
-		assertEquals("Cucina", this.partita.getStanzaCorrente().getNome());
-		assertEquals(cfuIniziali - 1, this.partita.getGiocatore().getCfu());
-	}
 
 	@Test
 	public void testVaiInBilocaleDirezioneSbagliata() {

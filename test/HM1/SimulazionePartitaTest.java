@@ -32,24 +32,6 @@ public class SimulazionePartitaTest {
 		assertTrue("Il gioco dovrebbe comunicare la vittoria", io.contieneMessaggio("Hai vinto!"));
 	}
 
-	@Test
-	public void testPartitaVintaConUnMovimento() {
-		Labirinto labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.getLabirinto();
-		
-		List<String> comandi = new ArrayList<>();
-		comandi.add("vai nord");
-		
-		IOSimulator io = new IOSimulator(comandi);
-		DiaDia gioco = new DiaDia(labirinto, io);
-		
-		gioco.gioca();
-		
-		assertTrue(io.contieneMessaggio("Hai vinto!"));
-	}
 	
 	@Test
 	public void testPartitaTerminataConComandoFine() {

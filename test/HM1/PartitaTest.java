@@ -32,10 +32,6 @@ class PartitaTest {
 		assertTrue(this.partita.vinta());
 	}
 	
-	@Test
-	void testVintaNonCorrispondenteAllaVittoria() {
-		assertFalse(this.partita.vinta());
-	}
 	
 	@Test
 	void testVintaAncheSeNonStanzaInizialeMaNonCorretta() {

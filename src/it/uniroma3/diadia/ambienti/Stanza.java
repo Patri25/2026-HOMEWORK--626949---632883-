@@ -3,16 +3,17 @@ package it.uniroma3.diadia.ambienti;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 /**
  * Classe Stanza - una stanza in un gioco di ruolo.
  * Una stanza e' un luogo fisico nel gioco.
  * E' collegata ad altre stanze attraverso delle uscite.
  * Ogni uscita e' associata ad una direzione.
- * 
- * @author docente di POO 
+ * * @author docente di POO 
  * @see Attrezzo
  * @version base
 */
@@ -34,6 +35,8 @@ public class Stanza {
 	private Map<String, Stanza> stanzeAdiacenti ;
     
 	private String[] direzioni;
+	
+	private AbstractPersonaggio personaggio;
     
     /**
      * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -52,20 +55,20 @@ public class Stanza {
     /**
      * Imposta una stanza adiacente.
      *
-     * @param direzione direzione in cui sara' posta la stanza adiacente.
+     * @param dir direzione in cui sara' posta la stanza adiacente.
      * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
      */
-    public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-        this.stanzeAdiacenti.put(direzione, stanza);
+    public void impostaStanzaAdiacente(String dir, Stanza stanza) {
+    	this.stanzeAdiacenti.put(dir, stanza);
     }
 
     /**
      * Restituisce la stanza adiacente nella direzione specificata
-     * @param direzione
+     * @param string
      */
-	public Stanza getStanzaAdiacente(String direzione) {
-        return this.stanzeAdiacenti.get(direzione);
-	}
+    public Stanza getStanzaAdiacente(String string) {
+    	return this.stanzeAdiacenti.get(string);
+    }
 
     /**
      * Restituisce la nome della stanza.
@@ -99,6 +102,7 @@ public class Stanza {
     public boolean addAttrezzo(Attrezzo attrezzo) {
         if (attrezzo != null) {
         	this.attrezzi.put(attrezzo.getNome(), attrezzo);
+        	return true;
         }
         return false;
     }
@@ -114,7 +118,7 @@ public class Stanza {
         
         risultato.append("\nUscite: ");
         for (String direzione : this.stanzeAdiacenti.keySet()) {
-            risultato.append(" ").append(direzione);
+        	risultato.append(" ").append(direzione);
         }
         
         risultato.append("\nAttrezzi nella stanza: ");
@@ -137,7 +141,7 @@ public class Stanza {
      * Restituisce l'attrezzo nomeAttrezzo se presente nella stanza.
 	 * @param nomeAttrezzo
 	 * @return l'attrezzo presente nella stanza.
-     * 		   null se l'attrezzo non e' presente.
+     * null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 	    return this.attrezzi.get(nomeAttrezzo);
@@ -154,8 +158,22 @@ public class Stanza {
 	}
 
 
-	public String[] getDirezioni() {
-	    return this.stanzeAdiacenti.keySet().toArray(new String[0]);
+	public Set<String> getDirezioni() {
+		return this.stanzeAdiacenti.keySet();
 	}
+
+	public AbstractPersonaggio getPersonaggio() {
+		return this.personaggio;
+	}
+
+	public void setPersonaggio(AbstractPersonaggio personaggio) {
+		this.personaggio = personaggio;
+	}
+
+	public Stanza getStanzaAdiacente(Direzione direzioneEnum) {
+		return this.stanzeAdiacenti.get(direzioneEnum);
+	}
+	
+	
 
 }
